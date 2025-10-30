@@ -12,7 +12,8 @@ public class Dealership {
         this.name = name;
         this.address = address;
         this.phone = phone;
-        this.inventory = new ArrayList<>();;
+        this.inventory = new ArrayList<>();
+        ;
     }
 
     public String getName() {
@@ -107,16 +108,9 @@ public class Dealership {
         inventory.add(vehicle);
     }
 
-    public void removeVehicle(Vehicle vehicle) {
-
+    public void removeVehicle(int userVinInput) {
+        inventory.removeIf(vehicle -> vehicle.getVin() == userVinInput);
     }
-
-//    @Override
-//    public String toString() {
-//        return "Dealership{" +
-//                "inventory=" + inventory +
-//                '}';
-//    }
 }
 
 

@@ -44,6 +44,9 @@ public class UserInterface {
                 case "U":
                     processAddVehicleRequest();
                     break;
+                case "R":
+                    processRemoveVehicleRequest();
+                    break;
                 case "X":
                     System.out.println("Thank you for using this application");
                     isDone = true;
@@ -177,8 +180,11 @@ public class UserInterface {
         dealershipFileManager.saveDealership(dealership);
     }
 
-//    private void processRemoveVehicleRequest() {
-//        ArrayList<Vehicle> vehicles = dealership.();
-//        displayVehicles(vehicles);
-//    }
+    private void processRemoveVehicleRequest() throws IOException {
+        System.out.println("Please enter the VIN of the vehicle you wish to remove:");
+        int userVinInput = scanner.nextInt();
+        scanner.nextLine();
+        dealership.removeVehicle(userVinInput);
+        dealershipFileManager.saveDealership(dealership);
+    }
 }
