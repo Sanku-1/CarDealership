@@ -22,6 +22,24 @@ public class UserInterface {
                 case "A":
                     processAllVehiclesRequest();
                     break;
+                case "P":
+                    processGetByPriceRequest();
+                    break;
+                case "M":
+                    processGetByMakeModelRequest();
+                    break;
+                case "Y":
+                    processGetByYearRequest();
+                    break;
+                case "C":
+                    processGetByColorRequest();
+                    break;
+                case "O":
+                    processGetByMileageRequest();
+                    break;
+                case "T":
+                    processGetByVehicleTypeRequest();
+                    break;
                 case "X":
                     System.out.println("Thank you for using this application");
                     isDone = true;
@@ -41,6 +59,12 @@ public class UserInterface {
 
     private void displayMenu() {
         System.out.println("A - List all vehicles");
+        System.out.println("P - List all vehicles in price range");
+        System.out.println("M - List all vehicles with Make/Model");
+        System.out.println("Y - List all vehicles in year range");
+        System.out.println("C - List all vehicles with color");
+        System.out.println("O - List all vehicles in odometer range");
+        System.out.println("T - List all vehicles with vehicle type");
         System.out.println("X - Quit");
         System.out.println();
     }
@@ -62,4 +86,74 @@ public class UserInterface {
             System.out.println(vehicle.toString());
         }
     }
+
+    private void processGetByPriceRequest() {
+        System.out.println("Please enter the desired price range:");
+        System.out.println("Max price:");
+        double maxPriceInput = scanner.nextDouble();
+        scanner.nextLine();
+        System.out.println("Min price:");
+        double minPriceInput = scanner.nextDouble();
+        scanner.nextLine();
+        ArrayList<Vehicle> vehicles = dealership.getVehiclesByPrice(maxPriceInput, minPriceInput);
+        displayVehicles(vehicles);
+    }
+
+    private void processGetByMakeModelRequest() {
+        System.out.println("Please enter the desired make and model:");
+        System.out.println("Make:");
+        String makeInput = scanner.nextLine();
+        System.out.println("Model");
+        String modelInput = scanner.nextLine();
+        ArrayList<Vehicle> vehicles = dealership.getVehiclesByMakeModel(makeInput, modelInput);
+        displayVehicles(vehicles);
+    }
+
+    private void processGetByYearRequest() {
+        System.out.println("Please enter the desired year range:");
+        System.out.println("Max year:");
+        int maxYearInput = scanner.nextInt();
+        scanner.nextLine();
+        System.out.println("Min year:");
+        int minYearInput = scanner.nextInt();
+        scanner.nextLine();
+        ArrayList<Vehicle> vehicles = dealership.getVehiclesByYear(maxYearInput, minYearInput);
+        displayVehicles(vehicles);
+    }
+
+    private void processGetByColorRequest() {
+        System.out.println("Please enter the desired color:");
+        String colorInput = scanner.nextLine();
+        ArrayList<Vehicle> vehicles = dealership.getVehiclesByColor(colorInput);
+        displayVehicles(vehicles);
+    }
+
+    private void processGetByMileageRequest() {
+        System.out.println("Please enter the desired mileage range:");
+        System.out.println("Max mileage:");
+        int maxMileageInput = scanner.nextInt();
+        scanner.nextLine();
+        System.out.println("Min mileage:");
+        int minMileageInput = scanner.nextInt();
+        scanner.nextLine();
+        ArrayList<Vehicle> vehicles = dealership.getVehiclesByMileage(maxMileageInput, minMileageInput);
+        displayVehicles(vehicles);
+    }
+
+    private void processGetByVehicleTypeRequest() {
+        System.out.println("Please enter the desired vehicle type from the following options: (car, truck, SUV, van)");
+        String vehicleTypeInput = scanner.nextLine();
+        ArrayList<Vehicle> vehicles = dealership.getVehiclesByType(vehicleTypeInput);
+        displayVehicles(vehicles);
+    }
+
+//    private void processAddVehicleRequest() {
+//        ArrayList<Vehicle> vehicles = dealership.();
+//        displayVehicles(vehicles);
+//    }
+//
+//    private void processRemoveVehicleRequest() {
+//        ArrayList<Vehicle> vehicles = dealership.();
+//        displayVehicles(vehicles);
+//    }
 }
