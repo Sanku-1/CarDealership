@@ -34,8 +34,8 @@ public class UserInterface {
 
     private void init() throws IOException {
         DealershipFileManager dealershipFileManager = new DealershipFileManager();
-        dealershipFileManager.getDealership();
-        System.out.println(dealership.getName() + "Application");
+        dealership = dealershipFileManager.getDealership();
+        System.out.println(dealership.getName() + " Application");
         System.out.println();
     }
 
@@ -59,7 +59,7 @@ public class UserInterface {
         System.out.println("Inventory:");
         System.out.println("------------------------------------");
         for (Vehicle vehicle : vehicles) {
-            System.out.println(vehicle);
+            System.out.println(vehicle.toString());
         }
     }
 }

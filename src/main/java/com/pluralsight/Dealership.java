@@ -64,7 +64,7 @@ public class Dealership {
     }
 
     public ArrayList<Vehicle> getAllVehicles() {
-        return null;
+        return inventory;
     }
 
     public void addVehicle(Vehicle vehicle) {
@@ -74,6 +74,13 @@ public class Dealership {
     public void removeVehicle(Vehicle vehicle) {
 
     }
+
+//    @Override
+//    public String toString() {
+//        return "Dealership{" +
+//                "inventory=" + inventory +
+//                '}';
+//    }
 }
 
 

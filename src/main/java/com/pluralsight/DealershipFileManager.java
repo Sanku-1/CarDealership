@@ -6,7 +6,7 @@ import java.io.FileReader;
 import java.io.IOException;
 
 public class DealershipFileManager {
-    public void getDealership() throws IOException {
+    public Dealership getDealership() throws IOException {
             FileReader fileReader = new FileReader("dealership.csv");
             BufferedReader inventoryBufReader = new BufferedReader(fileReader);
             String firstLine = inventoryBufReader.readLine();
@@ -28,7 +28,9 @@ public class DealershipFileManager {
                 double price = Double.parseDouble(tokens[7]);
                 Vehicle vehicle  = new Vehicle (vin, year, make, model, vehicleType, color, odometer, price);
                 dealership.addVehicle(vehicle);
+//                System.out.println(vehicle.getMake() + vehicle.getModel());
             }
+            return dealership;
     }
 
     public void saveDealership() {
