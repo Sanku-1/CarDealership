@@ -141,7 +141,7 @@ public class UserInterface {
     }
 
     private void processGetByVehicleTypeRequest() {
-        System.out.println("Please enter the desired vehicle type from the following options: (car, truck, SUV, van)");
+        System.out.println("Please enter the desired vehicle type from the following options: (sedan, truck, SUV, van)");
         String vehicleTypeInput = scanner.nextLine();
         ArrayList<Vehicle> vehicles = dealership.getVehiclesByType(vehicleTypeInput);
         displayVehicles(vehicles);
