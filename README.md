@@ -37,8 +37,10 @@ Follow these steps to get your application running within IntelliJ IDEA:
 - Java 17
 
 ## Demo
-
-
+[Main Menu](https://github.com/Sanku-1/CarDealership/blob/master/src/main/resources/Screenshots/Screenshot%202025-10-30%20at%209.29.54%E2%80%AFAM.png) \
+[Remove Vehicle](https://github.com/Sanku-1/CarDealership/blob/master/src/main/resources/Screenshots/Screenshot%202025-10-30%20at%209.30.13%E2%80%AFAM.png) \
+[Search by Filter 1](https://github.com/Sanku-1/CarDealership/blob/master/src/main/resources/Screenshots/Screenshot%202025-10-30%20at%209.32.51%E2%80%AFAM.png) \
+[Search by Filter 2](https://github.com/Sanku-1/CarDealership/blob/master/src/main/resources/Screenshots/Screenshot%202025-10-30%20at%209.29.54%E2%80%AFAM.png) \
 
 ## Future Work
 
