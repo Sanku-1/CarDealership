@@ -1,9 +1,7 @@
 package com.pluralsight;
 
-import java.io.BufferedReader;
-import java.io.FileNotFoundException;
-import java.io.FileReader;
-import java.io.IOException;
+import java.io.*;
+import java.util.ArrayList;
 
 public class DealershipFileManager {
     public Dealership getDealership() throws IOException {
@@ -28,12 +26,18 @@ public class DealershipFileManager {
                 double price = Double.parseDouble(tokens[7]);
                 Vehicle vehicle  = new Vehicle (vin, year, make, model, vehicleType, color, odometer, price);
                 dealership.addVehicle(vehicle);
-//                System.out.println(vehicle.getMake() + vehicle.getModel());
             }
             return dealership;
     }
 
-    public void saveDealership() {
-
+    public void saveDealership(Dealership dealership) throws IOException {
+        FileWriter fileWriter = new FileWriter("dealership.csv");
+        BufferedWriter dealershipBufWriter = new BufferedWriter(fileWriter);
+        dealershipBufWriter.write(dealership.getName() + "|" + dealership.getAddress() + "|" + dealership.getPhone() + "\n");
+        for (Vehicle vehicle : dealership.getAllVehicles()) {
+            dealershipBufWriter.write(vehicle.getVin() + "|" + vehicle.getYear() + "|" + vehicle.getMake() + "|" + vehicle.getModel() + "|" + vehicle.getVehicleType()+ "|" + vehicle.getColor() + "|" + vehicle.getOdometer() + "|" + vehicle.getPrice() + "\n");
+        }
+        dealershipBufWriter.close();
+        fileWriter.close();
     }
 }

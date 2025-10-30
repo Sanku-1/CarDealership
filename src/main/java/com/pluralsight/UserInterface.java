@@ -6,6 +6,7 @@ import java.util.Scanner;
 
 public class UserInterface {
 
+    DealershipFileManager dealershipFileManager = new DealershipFileManager();
     private Dealership dealership;
     Scanner scanner = new Scanner(System.in);
 
@@ -40,6 +41,9 @@ public class UserInterface {
                 case "T":
                     processGetByVehicleTypeRequest();
                     break;
+                case "U":
+                    processAddVehicleRequest();
+                    break;
                 case "X":
                     System.out.println("Thank you for using this application");
                     isDone = true;
@@ -51,7 +55,6 @@ public class UserInterface {
     }
 
     private void init() throws IOException {
-        DealershipFileManager dealershipFileManager = new DealershipFileManager();
         dealership = dealershipFileManager.getDealership();
         System.out.println(dealership.getName() + " Application");
         System.out.println();
@@ -65,6 +68,8 @@ public class UserInterface {
         System.out.println("C - List all vehicles with color");
         System.out.println("O - List all vehicles in odometer range");
         System.out.println("T - List all vehicles with vehicle type");
+        System.out.println("U - Add a vehicle");
+        System.out.println("R - Remove a vehicle");
         System.out.println("X - Quit");
         System.out.println();
     }
@@ -147,11 +152,31 @@ public class UserInterface {
         displayVehicles(vehicles);
     }
 
-//    private void processAddVehicleRequest() {
-//        ArrayList<Vehicle> vehicles = dealership.();
-//        displayVehicles(vehicles);
-//    }
-//
+    private void processAddVehicleRequest() throws IOException {
+        System.out.println("Please enter the VIN:");
+        int vin = scanner.nextInt();
+        scanner.nextLine();
+        System.out.println("Please enter the Year:");
+        int year = scanner.nextInt();
+        scanner.nextLine();
+        System.out.println("Please enter the Make:");
+        String make = scanner.nextLine();
+        System.out.println("Please enter the Model:");
+        String model = scanner.nextLine();
+        System.out.println("Please enter the Vehicle Type:");
+        String vehicleType = scanner.nextLine();
+        System.out.println("Please enter the color:");
+        String color = scanner.nextLine();
+        System.out.println("Please enter the mileage:");
+        int odometer = scanner.nextInt();
+        scanner.nextLine();
+        System.out.println("Please enter the price:");
+        double price = scanner.nextDouble();
+        Vehicle newVehicle = new Vehicle(vin, year, make, model, vehicleType, color, odometer, price);
+        dealership.addVehicle(newVehicle);
+        dealershipFileManager.saveDealership(dealership);
+    }
+
 //    private void processRemoveVehicleRequest() {
 //        ArrayList<Vehicle> vehicles = dealership.();
 //        displayVehicles(vehicles);
