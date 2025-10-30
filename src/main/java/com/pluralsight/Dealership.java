@@ -1,7 +1,6 @@
 package com.pluralsight;
 
 import java.util.ArrayList;
-import java.util.List;
 
 public class Dealership {
     private String name;
@@ -9,7 +8,7 @@ public class Dealership {
     private String phone;
     private ArrayList<Vehicle> inventory;
 
-    public Dealership(String name, String address, String phone, ArrayList<Vehicle> inventory) {
+    public Dealership(String name, String address, String phone) {
         this.name = name;
         this.address = address;
         this.phone = phone;
@@ -40,23 +39,23 @@ public class Dealership {
         this.phone = phone;
     }
 
-    public static ArrayList<Vehicle> getVehiclesByPrice(double max, double min) {
+    public ArrayList<Vehicle> getVehiclesByPrice(double max, double min) {
         return null;
     }
 
-    public static ArrayList<Vehicle> getVehiclesByMakeModel(String make, String model) {
+    public ArrayList<Vehicle> getVehiclesByMakeModel(String make, String model) {
         return null;
     }
 
-    public static ArrayList<Vehicle> getVehiclesByYear(int max, int min) {
+    public ArrayList<Vehicle> getVehiclesByYear(int max, int min) {
         return null;
     }
 
-    public static ArrayList<Vehicle> getVehiclesByColor(String color) {
+    public ArrayList<Vehicle> getVehiclesByColor(String color) {
         return null;
     }
 
-    public static ArrayList<Vehicle> getVehiclesByMileage(int max, int min) {
+    public ArrayList<Vehicle> getVehiclesByMileage(int max, int min) {
         return null;
     }
 
@@ -64,15 +63,15 @@ public class Dealership {
         return null;
     }
 
-    public static ArrayList<Vehicle> getAllVehicles() {
+    public ArrayList<Vehicle> getAllVehicles() {
         return null;
     }
 
-    public static void addVehicle(Vehicle vehicle) {
-
+    public void addVehicle(Vehicle vehicle) {
+        inventory.add(vehicle);
     }
 
-    public static void removeVehicle(Vehicle vehicle) {
+    public void removeVehicle(Vehicle vehicle) {
 
     }
 }
