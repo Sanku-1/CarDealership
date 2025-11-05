@@ -4,7 +4,7 @@ import java.io.BufferedWriter;
 import java.io.FileWriter;
 
 public class ContractDataManager {
-    public static void saveContract(Contract contract) {
+    public void saveContract(Contract contract) {
         try {
             FileWriter fileWriter = new FileWriter("contracts.csv", true);
             BufferedWriter contractBufferedWriter = new BufferedWriter(fileWriter);

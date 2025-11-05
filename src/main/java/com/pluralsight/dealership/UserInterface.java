@@ -9,6 +9,7 @@ import java.util.Scanner;
 public class UserInterface {
 
     DealershipFileManager dealershipFileManager = new DealershipFileManager();
+    ContractDataManager contractDataManager = new ContractDataManager();
     private Dealership dealership;
     Scanner scanner = new Scanner(System.in);
 
@@ -241,7 +242,7 @@ public class UserInterface {
             System.out.println("Total Price: $" + String.format("%.2f", leaseContract.getTotalPrice()));
             System.out.println("Monthly Payment (36 months at 4.0%): $" + String.format("%.2f", leaseContract.getMonthlyPayment()));
 
-            ContractDataManager.saveContract(leaseContract);
+            contractDataManager.saveContract(leaseContract);
 
         } else if (transactionType.equalsIgnoreCase("S")) {
             System.out.println("Will this be financed? (Y/N):");
@@ -271,7 +272,7 @@ public class UserInterface {
                 System.out.println("Payment: Full payment required");
             }
 
-            ContractDataManager.saveContract(salesContract);
+            contractDataManager.saveContract(salesContract);
 
         } else {
             System.out.println("Invalid option. Please enter S for Sale or L for Lease.");
