@@ -1,6 +1,8 @@
 package com.pluralsight.dealership;
 
 import java.io.IOException;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -47,6 +49,9 @@ public class UserInterface {
                 case "R":
                     processRemoveVehicleRequest();
                     break;
+                case "S":
+                    processSellOrLeaseRequest();
+                    break;
                 case "X":
                     System.out.println("Thank you for using this application");
                     isDone = true;
@@ -73,6 +78,7 @@ public class UserInterface {
         System.out.println("T - List all vehicles with vehicle type");
         System.out.println("U - Add a vehicle");
         System.out.println("R - Remove a vehicle");
+        System.out.println("S - Sell or Lease a vehicle");
         System.out.println("X - Quit");
         System.out.println();
     }
@@ -186,5 +192,94 @@ public class UserInterface {
         scanner.nextLine();
         dealership.removeVehicle(userVinInput);
         dealershipFileManager.saveDealership(dealership);
+    }
+
+    private void processSellOrLeaseRequest() throws IOException {
+        System.out.println("Please enter the VIN of the vehicle to sell or lease:");
+        int vin = scanner.nextInt();
+        scanner.nextLine();
+
+        Vehicle selectedVehicle = null;
+        for (Vehicle vehicle : dealership.getAllVehicles()) {
+            if (vehicle.getVin() == vin) {
+                selectedVehicle = vehicle;
+                break;
+            }
+        }
+
+        if (selectedVehicle == null) {
+            System.out.println("Vehicle not found in inventory.");
+            return;
+        }
+
+        System.out.println("Customer Name:");
+        String customerName = scanner.nextLine();
+        System.out.println("Customer Email:");
+        String customerEmail = scanner.nextLine();
+
+        LocalDate currentDate = LocalDate.now();
+        String dateString = currentDate.format(DateTimeFormatter.ofPattern("yyyyMMdd"));
+
+        System.out.println("Is this a Sale or Lease? (S/L)");
+        String transactionType = scanner.nextLine();
+
+        if (transactionType.equalsIgnoreCase("L")) {
+            int currentYear = currentDate.getYear();
+            int vehicleAge = currentYear - selectedVehicle.getYear();
+
+            if (vehicleAge > 3) {
+                System.out.println("This vehicle cannot be leased.");
+                return;
+            }
+
+            LeaseContract leaseContract = new LeaseContract(dateString, customerName, customerEmail, selectedVehicle);
+
+            System.out.println("\n--- Lease Summary ---");
+            System.out.println("Vehicle: " + selectedVehicle.getYear() + " " + selectedVehicle.getMake() + " " + selectedVehicle.getModel());
+            System.out.println("Expected Ending Value: $" + String.format("%.2f", leaseContract.getExpectedEndingValue()));
+            System.out.println("Lease Fee: $" + String.format("%.2f", leaseContract.getLeaseFee()));
+            System.out.println("Total Price: $" + String.format("%.2f", leaseContract.getTotalPrice()));
+            System.out.println("Monthly Payment (36 months at 4.0%): $" + String.format("%.2f", leaseContract.getMonthlyPayment()));
+
+            ContractDataManager.saveContract(leaseContract);
+
+        } else if (transactionType.equalsIgnoreCase("S")) {
+            System.out.println("Will this be financed? (Y/N):");
+            String financeOption = scanner.nextLine();
+            boolean isFinanced = financeOption.equalsIgnoreCase("Y");
+
+            System.out.println("Please Indicate the Sale Tax Percentage:");
+            double salesTaxPercentage = scanner.nextInt();
+            scanner.nextLine();
+
+
+            SalesContract salesContract = new SalesContract(dateString, customerName, customerEmail, selectedVehicle, salesTaxPercentage, isFinanced);
+
+            System.out.println("\n--- Sales Summary ---");
+            System.out.println("Vehicle: " + selectedVehicle.getYear() + " " + selectedVehicle.getMake() + " " + selectedVehicle.getModel());
+            System.out.println("Vehicle Price: $" + String.format("%.2f", selectedVehicle.getPrice()));
+            System.out.println("Sales Tax: $" + String.format("%.2f", salesContract.getSalesTaxAmount()));
+            System.out.println("Recording Fee: $" + String.format("%.2f", salesContract.getRecordingFee()));
+            System.out.println("Processing Fee: $" + String.format("%.2f", salesContract.getProcessingFee()));
+            System.out.println("Total Price: $" + String.format("%.2f", salesContract.getTotalPrice()));
+
+            if (isFinanced) {
+                int months = (selectedVehicle.getPrice() >= 10000) ? 48 : 24;
+                double rate = (selectedVehicle.getPrice() >= 10000) ? 4.25 : 5.25;
+                System.out.println("Monthly Payment (" + months + " months at " + rate + "%): $" + String.format("%.2f", salesContract.getMonthlyPayment()));
+            } else {
+                System.out.println("Payment: Full payment required");
+            }
+
+            ContractDataManager.saveContract(salesContract);
+
+        } else {
+            System.out.println("Invalid option. Please enter S for Sale or L for Lease.");
+            return;
+        }
+
+        dealership.removeVehicle(vin);
+        dealershipFileManager.saveDealership(dealership);
+        System.out.println("Transaction completed successfully!");
     }
 }
