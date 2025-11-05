@@ -12,6 +12,10 @@ This application allows the user to access and edit vehicle information from a c
 - As a developer, I want to load dealership and vehicle information from a file, so that the app can start with the current inventory.
 - As a developer, I want to create separate classes for vehicles, dealerships, file management, and the user interface, so that my code is organized and easier to work with.
 - As a user, I want to see helpful prompts and clear instructions in the console, so that I always know what input the program expects.
+- As a a developer, I want to create a parent class for contracts, so that I can use the same methods across future contracts regardless of type
+- As a developer, I want to create a child class of the Contract class specifically for Sales Contracts, so that the business can keep a record of customer purchases while using methods from the Contract class
+- As a developer, I want to create a child class of the Contract class specifically for Lease Contracts, so that the business can keep a record of customer leasing agreements while using methods from the Contract class
+- As a business owner, I want to keep a record of the contracts created as vehicles are sold, so that I can access them later
 
 ## Setup
 
@@ -41,6 +45,10 @@ Follow these steps to get your application running within IntelliJ IDEA:
 [Remove Vehicle](https://github.com/Sanku-1/CarDealership/blob/master/src/main/resources/Screenshots/Screenshot%202025-10-30%20at%209.30.13%E2%80%AFAM.png) \
 [Search by Filter 1](https://github.com/Sanku-1/CarDealership/blob/master/src/main/resources/Screenshots/Screenshot%202025-10-30%20at%209.32.51%E2%80%AFAM.png) \
 [Search by Filter 2](https://github.com/Sanku-1/CarDealership/blob/master/src/main/resources/Screenshots/Screenshot%202025-10-30%20at%209.29.54%E2%80%AFAM.png) \
+[Selling a Vehicle](https://github.com/Sanku-1/CarDealership/blob/master/src/main/resources/Screenshots/Screenshot%202025-11-05%20at%207.48.22%E2%80%AFAM.png) \
+[Selling a Vehicle that doesn't exist](https://github.com/Sanku-1/CarDealership/blob/master/src/main/resources/Screenshots/Screenshot%202025-11-05%20at%207.49.29%E2%80%AFAM.png) \
+[Leasing a Vehicle over 3 years old](https://github.com/Sanku-1/CarDealership/blob/master/src/main/resources/Screenshots/Screenshot%202025-11-05%20at%207.50.24%E2%80%AFAM.png) \
+[Leasing a Vehicle](https://github.com/Sanku-1/CarDealership/blob/master/src/main/resources/Screenshots/Screenshot%202025-11-05%20at%207.52.26%E2%80%AFAM.png) \
 
 ## Future Work
 
@@ -48,11 +56,12 @@ Outline potential future enhancements or functionalities you might consider addi
 
 - More Robust Menu
 - Ability to purchase/reserve cars from application
+- Add Admin view to application, allowing said user to then access saved contracts
 
 ## Resources
 
 
-- LTCA Workbook 5
+- LTCA Workbooks 5 & 6
 - https://www.w3schools.com/java/
 - https://www.geeksforgeeks.org/
 
