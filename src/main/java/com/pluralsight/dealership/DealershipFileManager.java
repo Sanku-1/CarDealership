@@ -1,7 +1,6 @@
-package com.pluralsight;
+package com.pluralsight.dealership;
 
 import java.io.*;
-import java.util.ArrayList;
 
 public class DealershipFileManager {
     public Dealership getDealership() throws IOException {
